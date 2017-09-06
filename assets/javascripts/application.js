@@ -25,14 +25,21 @@ function initMap() {
 
       var xhr = new XMLHttpRequest();
       xhr.onload = function() {
-         if (xhr.status === 200) {
-           console.log(xhr.responseText);
+         if (xhr.status != 200) {
+           return
          }
      }
-     xhr.open("POST", "https://rolofson.me/api/classLocations");
-     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-     xhr.send("lat="+latitude+"&lng="+longitude)
-    //  xhr.send({"lat": latitude, "lng": longitude})
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(latitude, longitude)
+    geocoder.geocode({'latLng': latlng}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        if (results[1]) {        var formated = results[0].formatted_address
+        xhr.open("POST", "https://rolofson.me/api/classLocations");
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.send("lat="+latitude+"&lng="+longitude+"&address="+formated)
+        } 
+      }
+    })
     })
   }
 }
