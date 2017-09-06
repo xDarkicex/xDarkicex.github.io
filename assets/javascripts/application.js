@@ -29,7 +29,7 @@ function initMap() {
            console.log(xhr.responseText);
          }
      }
-     xhr.open("POST", "http://localhost:3000/api/classLocations");
+     xhr.open("POST", "https://rolofson.me/api/classLocations");
      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
      xhr.send("lat="+latitude+"&lng="+longitude)
     //  xhr.send({"lat": latitude, "lng": longitude})
