@@ -19,7 +19,7 @@ function initMap() {
         lng: longitude
       };
       infoWindow.setPosition(pos)
-      infoWindow.setContent('1 n0w kn0w y0ur l0c4710n!');
+      infoWindow.setContent('You are here!');
       infoWindow.open(map);
       map.setCenter(pos);
 
